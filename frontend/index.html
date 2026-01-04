@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Incident Reporting Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              dark: {
+                bg: '#0f172a',
+                card: '#1e293b',
+                border: '#334155',
+                text: '#f1f5f9',
+                muted: '#64748b',
+                accent: {
+                  blue: '#3b82f6',
+                  purple: '#8b5cf6',
+                  green: '#10b981',
+                  red: '#ef4444',
+                  yellow: '#f59e0b'
+                }
+              }
+            }
+          }
+        }
+      }
+    </script>
+  </head>
+  <body class="dark">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
