@@ -16,8 +16,6 @@ const transporter = nodemailer.createTransport({
 router.post('/send-admin-code', verifyToken, isAdmin, async (req, res) => {
   const { email } = req.body;
   const code = Math.random().toString(36).substring(2, 10).toUpperCase();
-
-  console.log('Email:', email);
   
   try {
     // Check if user already exists
@@ -26,7 +24,6 @@ router.post('/send-admin-code', verifyToken, isAdmin, async (req, res) => {
     if (existingUser.rows.length > 0) {
       // Update existing user with registration code
       const result = await pool.query("UPDATE users SET registration_code = $1 WHERE email = $2", [code, email]);
-      console.log('Updated existing user:', result.rowCount);
     } else {
       // Insert new user with registration code (admin will complete registration later)
       const tempPassword = await bcrypt.hash('temp-password-' + Date.now(), 10);

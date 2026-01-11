@@ -66,31 +66,14 @@ CREATE TRIGGER update_incidents_updated_at
 -- ========================================
 -- 5. Insert Default System Admin
 -- ========================================
--- Note: This creates a default admin account for initial setup
--- Email: admin@incident.com
--- Password: admin123 (change this immediately after first login)
--- IMPORTANT: Change the password hash for production environments
 INSERT INTO users (full_name, email, password, role, is_verified) 
 VALUES (
   'System Admin', 
   'admin@incident.com', 
-  '$2b$10$Y.2XH5ikMvv3osuMx7Amgebfx9/OuSc.NisSHrh.l5icIsdWLOEm.', -- Hash of 'admin123'
+  '$2b$10$Y.2XH5ikMvv3osuMx7Amgebfx9/OuSc.NisSHrh.l5icIsdWLOEm.', 
   'admin', 
   true
 ) ON CONFLICT (email) DO NOTHING;
-
--- Alternative: Generate a new admin with custom password
--- Uncomment and modify the following lines to create your own admin:
-/*
-INSERT INTO users (full_name, email, password, role, is_verified) 
-VALUES (
-  'Your Admin Name', 
-  'your-admin-email@example.com', 
-  '$2b$10$YOUR_NEW_PASSWORD_HASH_HERE', -- Generate new hash using bcrypt
-  'admin', 
-  true
-) ON CONFLICT (email) DO NOTHING;
-*/
 
 -- ========================================
 -- 6. Clean Up Existing Data
